@@ -149,3 +149,10 @@ function processUserMessage(message) {
 
 // Start the app
 initializeApp();
+
+document.getElementById('reset-btn').addEventListener('click', function () {
+  if (confirm("Are you sure you want to reset everything?")) {
+    localStorage.clear();
+    location.reload();
+  }
+});
