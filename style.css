@@ -1,70 +1,68 @@
 body {
+  font-family: "Segoe UI", sans-serif;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #f0f2f5;
-  color: #333;
+  padding: 0;
+  background: #fefefe;
+  color: #222;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
 }
 
-.container {
-  max-width: 600px;
-  width: 100%;
-  padding: 1rem;
+h1, h2 {
+  margin-top: 20px;
+  text-align: center;
 }
 
-#welcome-screen, #main-app {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+#welcome-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 100px;
 }
 
-#welcome-screen input,
-#chat-input {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  margin-top: 1rem;
+input, button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 10px;
 }
 
-#welcome-screen button {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 10px;
-  background-color: #4f46e5;
+button {
+  background: #111;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.2s ease;
 }
 
-#welcome-screen button:hover {
-  background-color: #4338ca;
+button:hover {
+  background: #333;
 }
 
-#chat-box {
-  margin-top: 2rem;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 12px;
-  background: #fafafa;
+#main-app {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 #messages {
-  max-height: 200px;
+  height: 200px;
   overflow-y: auto;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px;
+  background: #f9f9f9;
+  margin-top: 20px;
 }
 
-canvas {
-  margin-top: 2rem;
-  max-width: 100%;
+#chat-input {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
 }
