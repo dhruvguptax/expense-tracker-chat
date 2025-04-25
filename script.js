@@ -64,10 +64,14 @@ function updateChart() {
 
 function addMessage(text, from = "user") {
   const div = document.createElement("div");
-  div.innerText = `${from === "user" ? "You: " : "Bot: "}${text}`;
+  const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  
+  div.classList.add(from === "user" ? "user" : "bot");
+  div.innerHTML = `${text}<div class="timestamp">${timestamp}</div>`;
   messages.appendChild(div);
   messages.scrollTop = messages.scrollHeight;
 }
+
 
 function processInput(text) {
   const words = text.toLowerCase().trim().split(" ");
