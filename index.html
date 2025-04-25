@@ -3,18 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Minimal Expense Tracker</title>
+  <title>Expense Tracker</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="container">
-    <h1 id="greeting">Welcome!</h1>
-    <div id="chat-box">
-      <div id="messages"></div>
-      <input id="chat-input" placeholder="Type something... e.g. 500 food" />
+    <div id="welcome-screen">
+      <h1>Welcome to Expense Tracker 🧾</h1>
+      <input id="name-input" placeholder="Your Name" />
+      <input id="month-input" placeholder="Current Month (e.g., April)" />
+      <button id="start-btn">Start Tracking</button>
     </div>
-    <canvas id="pie-chart"></canvas>
+
+    <div id="main-app" style="display:none;">
+      <h2 id="greeting"></h2>
+      <div id="chat-box">
+        <div id="messages"></div>
+        <input id="chat-input" placeholder="Type something... e.g. 500 food" />
+      </div>
+      <canvas id="pie-chart"></canvas>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>

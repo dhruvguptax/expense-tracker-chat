@@ -3,26 +3,42 @@ let user = localStorage.getItem("user") || null;
 const messages = document.getElementById("messages");
 const input = document.getElementById("chat-input");
 const greeting = document.getElementById("greeting");
+const pieCanvas = document.getElementById("pie-chart");
 
-if (!user) {
-  const name = prompt("What's your name?");
-  const month = prompt("Which month is this for?");
-  user = `${name} (${month})`;
-  localStorage.setItem("user", user);
+const welcomeScreen = document.getElementById("welcome-screen");
+const mainApp = document.getElementById("main-app");
+const nameInput = document.getElementById("name-input");
+const monthInput = document.getElementById("month-input");
+const startBtn = document.getElementById("start-btn");
+
+startBtn.addEventListener("click", () => {
+  const name = nameInput.value.trim();
+  const month = monthInput.value.trim();
+  if (name && month) {
+    user = `${name} (${month})`;
+    localStorage.setItem("user", user);
+    welcomeScreen.style.display = "none";
+    mainApp.style.display = "block";
+    initGreeting();
+  }
+});
+
+function initGreeting() {
+  if (user) {
+    const [name, month] = user.split(" ");
+    greeting.innerText = `Hi ${name}, here's your ${month} expenses:`;
+    updateChart();
+  }
 }
-greeting.innerText = `Hi ${user.split(" ")[0]}, your ${user.split(" ")[1]} expenses:`;
 
-// Pie chart init
 let chart;
 function updateChart() {
-  const ctx = document.getElementById("pie-chart").getContext("2d");
+  const ctx = pieCanvas.getContext("2d");
   const data = {
     labels: Object.keys(expenses),
     datasets: [{
       data: Object.values(expenses),
-      backgroundColor: [
-        "#f87171", "#34d399", "#60a5fa", "#fbbf24", "#a78bfa", "#f472b6"
-      ],
+      backgroundColor: ["#f87171", "#34d399", "#60a5fa", "#fbbf24", "#a78bfa", "#f472b6"],
     }],
   };
   if (chart) chart.destroy();
@@ -31,7 +47,6 @@ function updateChart() {
     data: data,
   });
 }
-updateChart();
 
 function addMessage(text, from = "user") {
   const div = document.createElement("div");
@@ -74,3 +89,8 @@ input.addEventListener("keydown", (e) => {
   }
 });
 
+if (user) {
+  welcomeScreen.style.display = "none";
+  mainApp.style.display = "block";
+  initGreeting();
+}

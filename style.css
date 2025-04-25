@@ -1,44 +1,70 @@
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f9f9f9;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-  }
-  
-  .container {
-    max-width: 600px;
-    width: 100%;
-  }
-  
-  #chat-box {
-    margin-top: 2rem;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    border-radius: 12px;
-    background: #fff;
-  }
-  
-  #messages {
-    max-height: 200px;
-    overflow-y: auto;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-  }
-  
-  #chat-input {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
-  
-  canvas {
-    margin-top: 2rem;
-    max-width: 100%;
-  }
-  
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  padding: 1rem;
+}
+
+#welcome-screen, #main-app {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+#welcome-screen input,
+#chat-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+#welcome-screen button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #4f46e5;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#welcome-screen button:hover {
+  background-color: #4338ca;
+}
+
+#chat-box {
+  margin-top: 2rem;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+#messages {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+canvas {
+  margin-top: 2rem;
+  max-width: 100%;
+}
