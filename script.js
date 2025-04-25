@@ -26,7 +26,8 @@ startBtn.addEventListener("click", () => {
 function initGreeting() {
   if (user) {
     const [name, month] = user.split(" ");
-    greeting.innerText = `Hi ${name}, here's your ${month} expenses:`;
+    const total = Object.values(expenses).reduce((a, b) => a + b, 0);
+    greeting.innerText = `Hi ${name}, here's your ${month} expenses (Total: $${total})`;
     updateChart();
   }
 }
@@ -45,6 +46,19 @@ function updateChart() {
   chart = new Chart(ctx, {
     type: "pie",
     data: data,
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function (tooltipItem) {
+              const label = data.labels[tooltipItem.dataIndex];
+              const value = data.datasets[0].data[tooltipItem.dataIndex];
+              return `${label}: $${value.toLocaleString()}`;
+            }
+          }
+        }
+      }
+    }
   });
 }
 
@@ -57,8 +71,9 @@ function addMessage(text, from = "user") {
 
 function processInput(text) {
   const words = text.toLowerCase().trim().split(" ");
-  if (words[0] === "del" && words.length === 3) {
-    const [_, cat, amtStr] = words;
+  if (words[0] === "del" && words.length >= 3) {
+    const amtStr = words[words.length - 1];
+    const cat = words.slice(1, -1).join(" ");
     const amt = parseFloat(amtStr);
     if (expenses[cat]) {
       expenses[cat] = Math.max(0, expenses[cat] - amt);
@@ -67,9 +82,9 @@ function processInput(text) {
     } else {
       addMessage(`No such category: ${cat}`, "bot");
     }
-  } else if (!isNaN(words[0]) && words.length === 2) {
+  } else if (!isNaN(words[0]) && words.length >= 2) {
     const amt = parseFloat(words[0]);
-    const cat = words[1];
+    const cat = words.slice(1).join(" ");
     if (!expenses[cat]) expenses[cat] = 0;
     expenses[cat] += amt;
     addMessage(`Added $${amt} to ${cat}`, "bot");
@@ -77,6 +92,7 @@ function processInput(text) {
     addMessage("Invalid input. Try '500 food' or 'del food 100'", "bot");
   }
   localStorage.setItem("expenses", JSON.stringify(expenses));
+  initGreeting();
   updateChart();
 }
 
