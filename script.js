@@ -156,3 +156,20 @@ document.getElementById('reset-btn').addEventListener('click', function () {
     location.reload();
   }
 });
+
+document.getElementById('export-btn').addEventListener('click', function () {
+  const data = {
+    name: userName,
+    month: currentMonth,
+    expenses
+  };
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `expenses_${userName || 'user'}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
