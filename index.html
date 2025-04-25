@@ -3,28 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Expense Tracker</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Chat Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div id="welcome-screen">
-      <h1>Welcome to Expense Tracker 🧾</h1>
-      <input id="name-input" placeholder="Your Name" />
-      <input id="month-input" placeholder="Current Month (e.g., April)" />
-      <button id="start-btn">Start Tracking</button>
-    </div>
-
-    <div id="main-app" style="display:none;">
-      <h2 id="greeting"></h2>
-      <div id="chat-box">
-        <div id="messages"></div>
-        <input id="chat-input" placeholder="Type something... e.g. 500 food" />
-      </div>
-      <canvas id="pie-chart"></canvas>
-    </div>
+  <div id="welcome-screen" class="centered">
+    <h1>Welcome to Chat Expense Tracker</h1>
+    <input id="name-input" placeholder="Your name" />
+    <input id="month-input" placeholder="Current month (e.g. April)" />
+    <button id="start-btn">Start Tracking</button>
   </div>
+
+  <div id="main-app" style="display: none">
+    <h2 id="greeting"></h2>
+    <canvas id="pie-chart" width="400" height="400"></canvas>
+    <div id="messages" class="messages"></div>
+    <input id="chat-input" placeholder="Type like '5000 food' or 'del food 200'" />
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
